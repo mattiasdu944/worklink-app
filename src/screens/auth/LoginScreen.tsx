@@ -34,7 +34,11 @@ export const LoginScreen = ({ navigation } : Props) => {
                         style={ COMPONENTS.textInput }
                     />
                 </View>
-                <TouchableOpacity style={{ ...COMPONENTS.buttonPrimary, marginVertical:20 }} activeOpacity={0.8}>
+                <TouchableOpacity 
+                    style={{ ...COMPONENTS.buttonPrimary, marginVertical:20 }} 
+                    activeOpacity={0.8}
+                    onPress={() => navigation.navigate('MainNavigator')}
+                >
                     <Text style={{ textAlign:'center', color:'#f3f3f3' }}>Iniciar sesion</Text>
                 </TouchableOpacity>
 
