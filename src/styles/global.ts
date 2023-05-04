@@ -9,7 +9,7 @@ const COLORS = {
 
 export const TYPOGRAPHY = StyleSheet.create({
     title1: {
-        fontSize: 30,
+        fontSize: 35,
         fontWeight: '800',
     },
 
@@ -22,6 +22,33 @@ export const TYPOGRAPHY = StyleSheet.create({
         fontWeight: '400',
         color: COLORS.text
     }
+});
 
 
+export const COMPONENTS = StyleSheet.create({
+    container:{
+        flex:1,
+        padding:15,
+    },
+    buttonPrimary: {
+        padding: 13,
+        backgroundColor: COLORS.primary,
+        borderRadius: 20,
+        textAlign:'center'
+    },
+
+    textInput: {
+        borderRadius: 10,
+        backgroundColor:'white',
+        padding: 13,
+        shadowColor: "#000000",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity:  0.3,
+        shadowRadius: 0.5,
+        elevation: 3,
+        marginBottom:15
+    }
 });
