@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const COLORS = {
+// const { top } = useSafeAreaInsets();
+
+export const COLORS = {
     primary: '#FD1339',
     secondary: '#504DFC',
     text: '#7c7c7c'
@@ -28,7 +31,8 @@ export const TYPOGRAPHY = StyleSheet.create({
 export const COMPONENTS = StyleSheet.create({
     container:{
         flex:1,
-        padding:15,
+        paddingHorizontal:15,
+        // paddingTop: top
     },
     buttonPrimary: {
         padding: 13,

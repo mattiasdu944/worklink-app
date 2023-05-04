@@ -10,8 +10,8 @@ export const AuthNavigator = () => {
         <Stack.Navigator
             initialRouteName='LoginScreen'
             screenOptions={{
-                // headerShown:false,
-                headerTitleAlign:'center',
+                headerShown:false,
+                // headerTitleAlign:'center',
                 headerStyle:{
                     elevation:0,
                 },

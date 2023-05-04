@@ -1,15 +1,19 @@
 import React from 'react'
+import { StackScreenProps } from "@react-navigation/stack";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 
-import { StackScreenProps } from "@react-navigation/stack";
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
 
 interface Props extends StackScreenProps <any,any>{}
 
 export const LoginScreen = ({ navigation } : Props) => {
+
+    const { top } = useSafeAreaInsets();
+
     return (
         <ScrollView style={{ flex:1 }}>
-            <View style={{...COMPONENTS.container, justifyContent:'center'}}>
+            <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top}}>
                 <View style={{ alignItems:'center', marginBottom:20 }}>
                     <Image
                         source={require('../../assets/images/logo.png')}
