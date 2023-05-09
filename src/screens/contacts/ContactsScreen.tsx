@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native';
+import { MainLayout } from '../../layouts';
 
 export const ContactsScreen = () => {
     return (
-        <View>
+        <MainLayout>
             <Text>ContactsScreen</Text>
-        </View>
+        </MainLayout>
     )
 }

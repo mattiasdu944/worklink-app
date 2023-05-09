@@ -1,10 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { MainLayout } from '../../layouts';
 
 export const JobsScreen = () => {
     return (
-        <View>
+        <MainLayout>
+            
+
             <Text>JobsScreen</Text>
-        </View>
+        </MainLayout>
     )
 }
