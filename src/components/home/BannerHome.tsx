@@ -1,30 +1,53 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+
+import { TYPOGRAPHY } from '../../styles';
+import { Ionicons } from '@expo/vector-icons';
 
 export const BannerHome = () => {
     return (
-        <View style={ styles.banner }>
-            
+        <View style={ styles.container }>
+            <View style={ styles.logo }>
+                <Image
+                    source={require('../../assets/images/logo.png')}
+                    style={{ width: 35, height: 35 }}
+                />
+                <Text style={{ ...TYPOGRAPHY.title3, marginBottom:0 }}>Worklink</Text>
+            </View>
+
+            <TouchableOpacity
+                style={ styles.icon }
+                activeOpacity={ 0.5 }
+            >
+                <Ionicons
+                    name='notifications-outline'
+                    color='#000'
+                    size={ 24 }
+                />
+            </TouchableOpacity>
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    banner: {
-        backgroundColor:'#000',
-        borderRadius: 10,
-        padding:25,
-        minHeight: 200,
-        maxWidth: 325,
-        shadowColor: "#000000",
-        shadowOffset: {
-          width: 0,
-          height: 4,
-        },
-        shadowOpacity:  0.19,
-        shadowRadius: 5.62,
-        elevation: 6,
-        marginBottom:10
+    container: {
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingTop:10,
+        marginBottom:30
+    },
+    logo:{
+        flexDirection:'row',
+        alignItems:'center',
+        columnGap:10
+    },
+    icon:{
+        backgroundColor:'rgba(0, 0, 0, 0.05)',
+        alignItems:'center',
+        padding:10,
+        borderRadius:15
     }
 });

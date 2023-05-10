@@ -1,8 +1,10 @@
 import React from 'react'
-import { ScrollView } from 'react-native-gesture-handler'
-import { View } from 'react-native';
-import { COMPONENTS } from "../styles";
+import { StatusBar } from 'expo-status-bar';
+import { View, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+// import { ScrollView } from 'react-native-gesture-handler'
+import { COMPONENTS } from "../styles";
 
 
 
@@ -13,12 +15,16 @@ export const MainLayout = ({ children }: Props) => {
     const { top } = useSafeAreaInsets();
 
     return (
-        <ScrollView style={{ flex:1 }}>
-            <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top }}>
+        <>
+            <StatusBar style="auto" />
 
-                { children }
+            <ScrollView style={{ flex:1 }}>
+                <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top }}>
 
-            </View>
-        </ScrollView>
+                    { children }
+
+                </View>
+            </ScrollView>
+        </>
     )
 }

@@ -14,16 +14,19 @@ export const TYPOGRAPHY = StyleSheet.create({
     title1: {
         fontSize: 35,
         fontWeight: '800',
+        marginBottom:10
     },
 
     title2: {
         fontSize: 25,
         fontWeight: '800',
+        marginBottom:10
     },
 
     title3: {
         fontSize: 20,
         fontWeight: '800',
+        marginBottom:10
     },
     text: {
         fontSize: 14,

@@ -1,21 +1,25 @@
 import React from 'react'
+import { Text, View } from 'react-native';
 
+import { COLORS, TYPOGRAPHY } from '../styles';
 import { MainLayout } from '../layouts';
-import { BannerHome, SearchInput } from '../components';
-import { Text } from 'react-native';
-import { TYPOGRAPHY } from '../styles';
+import { BannerHome, JobsCarousel, SearchInput, SectionHeader, JobList } from '../components';
 
 export const HomeScreen = () => {
     return (
         <MainLayout>
-            <Text style={ TYPOGRAPHY.title1 }>
-                Find your creative job
-            </Text>
+            <BannerHome/>    
             <SearchInput/>
-            <Text style={ TYPOGRAPHY.title3 }>Popular Jobs</Text>
-            <BannerHome/>
-            <Text style={ TYPOGRAPHY.title3 }>Recent Jobs</Text>
-          
+
+            {/* Carousel */}
+            <SectionHeader title={'Popular Jobs'} subTitle='Ver todo'/>
+            <JobsCarousel/>
+
+
+            {/* Carousel */}
+            <SectionHeader title={'Recent Jobs'} subTitle='Ver todo'/>
+            <JobList/>
+
         </MainLayout>
     )
 }

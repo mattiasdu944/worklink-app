@@ -1,25 +1,40 @@
 import React from 'react'
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
 
 export const SearchInput = () => {
     return (
-        <View >
+        <View  style={ styles.container }>
 
             <TextInput
-                style={ styles.container }
+                style={{
+                    width:'85%'
+                }}
+                placeholder='Buscar Empleo'
+            />
+            <TouchableOpacity activeOpacity={0.9}>
+                <Ionicons
+                    name='search-outline'
+                    color='rgba(0,0,0, 0.5)'
+                    size={ 24 }
                 />
-            <View>
-
-            </View>
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'rgba(0,0,0, 0.05)',
+        display:'flex',
+        flexDirection:'row',
+        borderWidth: 2,
+        borderColor: 'rgba(0,0,0, 0.05)',
         paddingHorizontal: 10,
         paddingVertical: 15,
-        borderRadius: 10
+        borderRadius: 15,
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginBottom:20
     },
 });
