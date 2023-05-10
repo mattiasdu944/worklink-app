@@ -1,4 +1,5 @@
 export * from './contact'
 export * from './home'
 export * from './job'
+export * from './profile'
 export * from './ui'
