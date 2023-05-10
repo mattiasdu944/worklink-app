@@ -19,7 +19,7 @@ export const MainLayout = ({ children }: Props) => {
             <StatusBar style="auto" />
 
             <ScrollView style={{ flex:1 }}>
-                <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top }}>
+                <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top * .3 }}>
 
                     { children }
 

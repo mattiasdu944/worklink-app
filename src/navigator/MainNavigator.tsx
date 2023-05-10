@@ -3,6 +3,7 @@ import { ContactsScreen, HomeScreen, JobsScreen, ProfileScreen } from '../screen
 
 import { COLORS } from '../styles';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { HeaderLeft, HeaderRigth } from '../components';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +14,14 @@ export const MainNavigator = () => {
                 backgroundColor:'white',
             }}
             screenOptions={({ route }) => ({
-                headerShown:false,
+                // headerShown:false,
+                headerLeft: () => (
+                    <HeaderLeft/>
+                ),
+                headerRight: () => (
+                    <HeaderRigth/>
+                ),
+                headerTitleStyle:{display:'none'},
                 tabBarActiveTintColor: COLORS.primary,
                 tabBarStyle:{
                     borderTopColor:'#fff',
@@ -48,7 +56,7 @@ export const MainNavigator = () => {
             })}
         >
             <Tab.Screen options={{ title:'Inicio' }} name="HomeScreen" component={ HomeScreen } />
-            <Tab.Screen options={{ title:'Contactos' }} name="ContactsScreen" component={ ContactsScreen } />
+            <Tab.Screen options={{ title:'Contactos' }} name="ContactsScreen" component={ ContactsScreen }/>
             <Tab.Screen options={{ title:'Empleos' }} name="JobsScreen" component={ JobsScreen } />
             <Tab.Screen options={{ title:'Perfil' }} name="ProfileScreen" component={ ProfileScreen } />
         </Tab.Navigator>

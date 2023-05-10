@@ -3,7 +3,11 @@ import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
-export const SearchInput = () => {
+interface Props{
+    placeholder: string;
+}
+
+export const SearchInput = ({ placeholder }: Props) => {
     return (
         <View  style={ styles.container }>
 
@@ -11,7 +15,7 @@ export const SearchInput = () => {
                 style={{
                     width:'85%'
                 }}
-                placeholder='Buscar Empleo'
+                placeholder={ placeholder }
             />
             <TouchableOpacity activeOpacity={0.9}>
                 <Ionicons

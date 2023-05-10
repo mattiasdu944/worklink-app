@@ -3,13 +3,12 @@ import { Text, View } from 'react-native';
 
 import { COLORS, TYPOGRAPHY } from '../styles';
 import { MainLayout } from '../layouts';
-import { BannerHome, JobsCarousel, SearchInput, SectionHeader, JobList } from '../components';
+import { JobsCarousel, SearchInput, SectionHeader, JobList } from '../components';
 
 export const HomeScreen = () => {
     return (
         <MainLayout>
-            <BannerHome/>    
-            <SearchInput/>
+            <SearchInput placeholder={'Buscar empleo'}/>
 
             {/* Carousel */}
             <SectionHeader title={'Popular Jobs'} subTitle='Ver todo'/>
