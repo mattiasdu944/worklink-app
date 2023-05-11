@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { COMPONENTS } from "../styles";
+import { StatusBar } from 'expo-status-bar';
 
 
 interface Props{
@@ -13,13 +14,17 @@ export const AuthLayout = ({ children }: Props) => {
     const { top } = useSafeAreaInsets();
 
     return (
-        <ScrollView style={{ flex:1 }}>
-            <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top }}>
+        <>
+            <StatusBar style="light" />
 
-                { children }
+            <ScrollView style={{ flex:1 }}>
+                <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top * 2 }}>
 
-            </View>
-        </ScrollView>
+                    { children }
+
+                </View>
+            </ScrollView>
+        </>
 
     )
 }

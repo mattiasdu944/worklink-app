@@ -40,6 +40,7 @@ export const COMPONENTS = StyleSheet.create({
     container:{
         flex:1,
         paddingHorizontal:15,
+        justifyContent:'center',
         // paddingTop: top
     },
     buttonPrimary: {
@@ -50,17 +51,11 @@ export const COMPONENTS = StyleSheet.create({
     },
 
     textInput: {
-        borderRadius: 10,
+        borderRadius: 15,
         backgroundColor:'white',
-        padding: 13,
-        shadowColor: "#000000",
-        shadowOffset: {
-          width: 0,
-          height: 5,
-        },
-        shadowOpacity:  0.3,
-        shadowRadius: 0.5,
-        elevation: 3,
+        padding: 10,
+        borderWidth:1,
+        borderColor:'rgba(0,0,0,0.1)',
         marginBottom:15
     }
 });

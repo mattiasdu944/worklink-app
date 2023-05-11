@@ -9,7 +9,7 @@ export const ProfileScreen = () => {
             <ProfileBanner/>
 
             <View style={{ minHeight:100 }}>
-
+                
             </View>
         </MainLayout>
     )
