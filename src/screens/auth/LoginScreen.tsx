@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { StackScreenProps } from "@react-navigation/stack";
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
 import { AuthLayout } from '../../layouts';
+import { AuthContext } from '../../context';
 
 interface Props extends StackScreenProps <any,any>{}
 
 export const LoginScreen = ({ navigation } : Props) => {
+
+    const { loginUser, isLoading, setIsLoading } = useContext( AuthContext );
+
+    const [loginForm, setLoginForm] = useState({ email:'', password:''});
+
+    const handleSubmit = () => {
+        if( loginForm.email.trim() === '' ){
+            alert('Ingrese un correo valido');
+            setIsLoading(false);
+            return;
+        }
+        if( loginForm.password.length < 8 ){
+            alert('La contraseña debe tener minimo 8 caracteres');
+            setIsLoading(false);
+            return;
+        }
+
+        const message  = loginUser( loginForm.email, loginForm.password );
+        console.log(message);
+    }
+
+
+    const handleChange = (name: string, value: string) => setLoginForm({ ...loginForm, [name]: value });
 
 
     return (
@@ -28,20 +52,33 @@ export const LoginScreen = ({ navigation } : Props) => {
                 <Text>Correo electronico</Text>
                 <TextInput
                     style={ COMPONENTS.textInput }
+                    value={loginForm.email}
+                    onChangeText={(text) => handleChange("email", text)}
                 />
             </View>
             <View>
                 <Text>Contraseña</Text>
                 <TextInput
                     style={ COMPONENTS.textInput }
+                    value={loginForm.password}
+                    secureTextEntry
+                    onChangeText={(text) => handleChange("password", text)}
                 />
             </View>
             <TouchableOpacity 
                 style={{ ...COMPONENTS.buttonPrimary, marginVertical:20 }} 
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate('MainNavigator')}
+                onPress={ handleSubmit }
             >
-                <Text style={{ textAlign:'center', color:'#f3f3f3' }}>Iniciar sesion</Text>
+                {
+                    isLoading
+                    ? (
+                        <ActivityIndicator color='#fff'/>
+                    )
+                    :(
+                        <Text style={{ textAlign:'center', color:'#f3f3f3' }}>Iniciar sesion</Text>
+                    )
+                }
             </TouchableOpacity>
 
             <TouchableOpacity 

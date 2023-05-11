@@ -26,11 +26,10 @@ export const MainNavigator = () => {
                 tabBarStyle:{
                     borderTopColor:'#fff',
                     borderWidth:0,
-                    elevation:0
+                    elevation:0,
+                    borderRadius: 10
                 },
-                tabBarLabelStyle:{
-                    fontSize:12
-                },
+
                 tabBarIcon: ({ color, size }) => {
                     let iconName: any;
                     switch( route.name ){

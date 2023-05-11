@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { LoginScreen, RegisterScreen } from '../screens';
+import { AuthContext } from '../context';
+import { MainNavigator } from './MainNavigator';
 
 const Stack = createStackNavigator();
 export const AuthNavigator = () => {
+
+    const { status } = useContext( AuthContext );
+    console.log(status);
+
+
+
+
     return (
 
         <Stack.Navigator
@@ -20,8 +29,20 @@ export const AuthNavigator = () => {
                 }
             }}
         >
-            <Stack.Screen name="LoginScreen"    options={{ title:'Iniciar sesion' }} component={ LoginScreen } />
-            <Stack.Screen name="RegisterScreen" options={{ title:'Crear cuenta' }} component={ RegisterScreen } />
+            {
+                ( status != 'authenticated' )
+                ?(
+                    <>
+                        <Stack.Screen name="LoginScreen"    component={ LoginScreen } />
+                        <Stack.Screen name="RegisterScreen" component={ RegisterScreen } />
+                    </>
+                )
+                :(
+                    <>
+                        <Stack.Screen name="MainNavigator"  component={ MainNavigator } />
+                    </>
+                )
+            }
         </Stack.Navigator>
 
     );
