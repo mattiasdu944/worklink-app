@@ -1,29 +1,40 @@
 import React from 'react'
 import { View, StyleSheet, Image, Text } from 'react-native';
-import { TYPOGRAPHY } from '../../styles';
-import { VerifyChip } from '../ui/';
 
-export const ProfileBanner = () => {
+import { VerifyChip } from '../ui/';
+import { TYPOGRAPHY } from '../../styles';
+import { IUserProfile } from '../../interfaces';
+
+interface Props{
+    userProfile: IUserProfile;
+}
+
+export const ProfileBanner = ({userProfile}: Props) => {
+
+    // const { profile } = userProfile;
+   
+
     return (
         <>
             <View style={ styles.container }>
                 <Image
-                    source={{ uri:'https://images.pexels.com/photos/7135037/pexels-photo-7135037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}
+                    source={{ uri:userProfile.profile?.banner }}
                     style={ styles.banner }
                 />
 
                 <View>
                     <Image
-                        source={{ uri:'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }}
+                        source={{ uri: userProfile.image }}
                         style={ styles.profile }
                     />
                 </View>
             </View>
             <Text style={{ ...TYPOGRAPHY.title2, width:'100%' }}>
-                Mattias Alexandre Duarte Aparicio{' '}
+                {`${ userProfile.name } ${ userProfile.lastname } `}
                 <VerifyChip/>   
             </Text>
-            <Text style={ TYPOGRAPHY.text }>Ing. de Sistemas - 5to semestre</Text>
+            <Text style={ TYPOGRAPHY.text }>
+                { userProfile.profile?.career == '' ? '' : `${userProfile.profile?.career} - `} { userProfile.profile?.semester } semestre</Text>
         </>
     )
 }

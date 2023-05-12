@@ -1,10 +1,8 @@
 import { FC, useReducer, useState } from 'react';
-import axios from 'axios';
-import { IUser } from '../../interfaces';
-import { worklinkApi } from '../../client';
 import { ToastAndroid } from "react-native";
 
-
+import axios from 'axios';
+import { worklinkApi } from '../../api'
 
 import { AuthContext } from './';
 import { AuthState, authReducer } from './authReducer';
@@ -27,7 +25,7 @@ export const AuthProvider:FC<any> = ({ children }) => {
 
 
     const showToast = (message: string) => {
-        ToastAndroid.show(message, ToastAndroid.BOTTOM);
+        ToastAndroid.show(message, ToastAndroid.CENTER);
     };
 
     const loginUser =  async(email: string, password: string ): Promise<void> => {
@@ -55,37 +53,42 @@ export const AuthProvider:FC<any> = ({ children }) => {
                     hasError: true,
                     message: error.response?.data.message
                 })
+                showToast(error.response?.data.message);
             }
-            showToast(isError.message);
         }finally{
             setIsLoading( false );
-            
         }
     }   
 
 
-    const registerUser = async(email: string, password: string, name: string, lastname: string, username: string): Promise<{hasError: boolean; message?: string}> => {
+    const registerUser = async(email: string, password: string, name: string, lastname: string, username: string): Promise<void> => {
         try {
             const { data } = await worklinkApi.post('/user/register', { name, email, password, lastname, username });
-            const { user } = data;
             
-            dispatch({ type: 'signUp', payload:{ user: {} as IUser, token:'' } });
-            return {
-                hasError: false
-            }
+            dispatch({ 
+                type:'signUp', 
+                payload:{
+                    token: data.token,
+                    user: data.user
+                },
+            
+            })
+
+            setIsError({
+                hasError: false,
+                message: ''
+            })
 
         } catch (error) {
             if ( axios.isAxiosError(error) ) {
-                return {
+                setIsError({
                     hasError: true,
                     message: error.response?.data.message
-                }
+                })
+                showToast(error.response?.data.message);
             }
-
-            return {
-                hasError: true,
-                message: 'No se pudo crear el usuario - intente de nuevo'
-            }
+        }finally{
+            setIsLoading( false );
         }
     }
 

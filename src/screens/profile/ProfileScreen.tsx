@@ -1,12 +1,30 @@
-import React from 'react'
-import { View, Text } from 'react-native';
+import { useContext } from 'react'
+import { Text, View } from 'react-native';
+
+import { AuthContext } from '../../context';
+
 import { MainLayout } from '../../layouts';
-import { ProfileBanner } from '../../components/profile/ProfileBanner';
+import { FullLoadingView, ProfileBanner } from '../../components';
+import { useProfile } from '../../hooks';
 
 export const ProfileScreen = () => {
+    const { user } = useContext( AuthContext );
+    const { userProfile, isLoading } = useProfile( user!.username );
+
+    console.log(user);
+
+    if( isLoading ){
+        return (
+            <FullLoadingView/>
+        )
+    }
+
+
     return (
         <MainLayout>
-            <ProfileBanner/>
+            <ProfileBanner 
+                userProfile={ userProfile }
+            />
 
             <View style={{ minHeight:100 }}>
                 

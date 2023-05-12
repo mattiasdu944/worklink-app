@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { StackScreenProps } from "@react-navigation/stack";
 
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
@@ -11,11 +11,8 @@ interface Props extends StackScreenProps<any, any> { }
 export const RegisterScreen = ({ navigation }: Props) => {
 
 
+    const { registerUser } = useContext(AuthContext);
 
-
-    const { registerUser } = useContext(AuthContext)
-
-    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const [registerForm, setRegisterForm] = useState({ name:'', lastname:'', username:'', email:'', password:''});
@@ -23,7 +20,6 @@ export const RegisterScreen = ({ navigation }: Props) => {
     const handleChange = (name: string, value: string) => setRegisterForm({ ...registerForm, [name]: value });
 
     const handleSubmit = async () => {
-        console.log(registerForm);
         const { email, lastname, name, password, username } = registerForm;
         setIsLoading(true);
 
@@ -45,7 +41,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
             return;
         }
 
-        if( !email.includes('ulasalle') ){
+        if( !email.includes('est.ulasalle.edu.bo') ){
             alert('Solo se permiten usuarios de La Salle')
             setIsLoading(false);
             return;
@@ -64,11 +60,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
         }
 
 
-        const { hasError, message } = await registerUser( email, password, name, lastname, username );
-        if( hasError ){
-            alert( message )
-            return;
-        }
+        await registerUser( email.trim().toLocaleLowerCase(), password.trim(), name.trim(), lastname.trim(), username.trim().toLocaleLowerCase() );
 
         setIsLoading(false);
     }
@@ -124,15 +116,25 @@ export const RegisterScreen = ({ navigation }: Props) => {
                 <TextInput
                     style={COMPONENTS.textInput}
                     value={registerForm.password}
+                    secureTextEntry
                     onChangeText={(text) => handleChange("password", text)}
                 />
             </View>
+
             <TouchableOpacity 
+                style={{ ...COMPONENTS.buttonPrimary, marginVertical:20 }} 
                 activeOpacity={0.8}
-                style={{ ...COMPONENTS.buttonPrimary, marginVertical: 20 }} 
                 onPress={ handleSubmit }
             >
-                <Text style={{ textAlign: 'center', color: '#f3f3f3' }}>Crear cuenta</Text>
+                {
+                    isLoading
+                    ? (
+                        <ActivityIndicator color='#fff'/>
+                    )
+                    :(
+                        <Text style={{ textAlign:'center', color:'#f3f3f3' }}>Crear cuenta</Text>
+                    )
+                }
             </TouchableOpacity>
 
             <TouchableOpacity

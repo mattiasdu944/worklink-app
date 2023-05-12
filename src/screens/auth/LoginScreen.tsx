@@ -14,7 +14,7 @@ export const LoginScreen = ({ navigation } : Props) => {
 
     const [loginForm, setLoginForm] = useState({ email:'', password:''});
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if( loginForm.email.trim() === '' ){
             alert('Ingrese un correo valido');
             setIsLoading(false);
@@ -26,8 +26,7 @@ export const LoginScreen = ({ navigation } : Props) => {
             return;
         }
 
-        const message  = loginUser( loginForm.email, loginForm.password );
-        console.log(message);
+        await loginUser( loginForm.email, loginForm.password );
     }
 
 
