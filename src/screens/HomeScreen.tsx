@@ -1,7 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native';
 
-import { COLORS, TYPOGRAPHY } from '../styles';
 import { MainLayout } from '../layouts';
 import { JobsCarousel, SearchInput, SectionHeader, JobList } from '../components';
 
@@ -11,16 +9,13 @@ export const HomeScreen = () => {
             <SearchInput placeholder={'Buscar empleo'}/>
 
             {/* Carousel */}
-            <SectionHeader title={'Popular Jobs'} subTitle='Ver todo'/>
+            <SectionHeader title={'Vacantes mas vistas'} subTitle='Ver todo'/>
             <JobsCarousel/>
 
-
             {/* Carousel */}
-            <SectionHeader title={'Recent Jobs'} subTitle='Ver todo'/>
+            <SectionHeader title={'Vacantes recientes'} subTitle='Ver todo'/>
             <JobList/>
 
         </MainLayout>
     )
 }
-
-// 

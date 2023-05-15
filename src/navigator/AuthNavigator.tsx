@@ -4,14 +4,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { LoginScreen, RegisterScreen } from '../screens';
 import { AuthContext } from '../context';
 import { MainNavigator } from './MainNavigator';
+import { FullLoadingView } from '../components';
 
 const Stack = createStackNavigator();
 export const AuthNavigator = () => {
 
     const { status } = useContext( AuthContext );
-    console.log(status);
 
-
+    if( status == 'checking' ) return <FullLoadingView/>
 
 
     return (

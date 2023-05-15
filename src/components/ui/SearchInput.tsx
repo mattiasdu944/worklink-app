@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(0,0,0, 0.05)',
         paddingHorizontal: 10,
-        paddingVertical: 15,
+        paddingVertical: 10,
         borderRadius: 15,
         justifyContent:'space-between',
         alignItems:'center',
