@@ -11,9 +11,6 @@ interface Props{
 
 export const ProfileBanner = ({userProfile}: Props) => {
 
-    // const { profile } = userProfile;
-   
-
     return (
         <>
             <View style={ styles.container }>
@@ -27,14 +24,19 @@ export const ProfileBanner = ({userProfile}: Props) => {
                         source={{ uri: userProfile.image }}
                         style={ styles.profile }
                     />
+                    <VerifyChip/>   
                 </View>
             </View>
-            <Text style={{ ...TYPOGRAPHY.title2, width:'100%' }}>
+            <Text style={{ ...TYPOGRAPHY.title2, width:'100%', textAlign:'center', marginBottom:0 }}>
                 {`${ userProfile.name } ${ userProfile.lastname } `}
-                <VerifyChip/>   
             </Text>
-            <Text style={ TYPOGRAPHY.text }>
-                { userProfile.profile?.career == '' ? '' : `${userProfile.profile?.career} - `} { userProfile.profile?.semester } semestre</Text>
+            <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>
+                { userProfile.email }
+            </Text>
+            <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>
+                { userProfile.profile?.career == '' ? '' : `${userProfile.profile?.career} - `}
+                Semestre: { userProfile.profile?.semester }
+            </Text>
         </>
     )
 }
@@ -44,6 +46,7 @@ const styles = StyleSheet.create({
         position:'relative',
         marginBottom:50
     },
+
     banner:{
         minHeight:200,
         width:'100%',

@@ -9,7 +9,7 @@ export const VerifyChip = () => {
             <Ionicons
                 name='star-outline'
                 color='#fff'
-                size={10}
+                size={13}
             />
         </View>
     )
@@ -20,7 +20,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary,
         alignItems:'center',
         justifyContent:'center',
-        padding:5,
-        borderRadius:100
+        borderRadius:100,
+        width:25,
+        height:25,
+        position:'absolute',
+        bottom:-40,
+        left:90
     }
 })

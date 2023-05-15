@@ -1,18 +1,17 @@
 import { useContext } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { AuthContext } from '../../context';
+import { useProfile } from '../../hooks';
+import { AuthContext } from '../../context/auth/AuthContext';
 
 import { MainLayout } from '../../layouts';
 import { FullLoadingView, ProfileBanner } from '../../components';
-import { useProfile } from '../../hooks';
+import { COLORS } from '../../styles';
 
 export const ProfileScreen = () => {
     const { user, logout } = useContext( AuthContext );
-    const { userProfile, isLoading } = useProfile( user!.username );
-    
+    const { userProfile, isLoading } = useProfile( user?.username);
 
-    console.log(user);
 
     if( isLoading ){
         return (
@@ -20,17 +19,22 @@ export const ProfileScreen = () => {
         )
     }
 
+    console.log(userProfile);
 
     return (
         <MainLayout>
             <ProfileBanner 
-                userProfile={ userProfile }
+                userProfile={ userProfile! }
             />
 
             <TouchableOpacity
+                style={ styles.buttonLogout }
+                activeOpacity={0.8}
                 onPress={ logout }
             >
-                <Text>Cerrar Sesion</Text>
+                <Text style={{ color:'#fff', textAlign:'center' }}>
+                    Cerrar Sesion
+                </Text>
             </TouchableOpacity>
             <View style={{ minHeight:100 }}>
                 
@@ -38,3 +42,11 @@ export const ProfileScreen = () => {
         </MainLayout>
     )
 }
+
+const styles = StyleSheet.create({
+    buttonLogout: {
+        backgroundColor: COLORS.primary,
+        borderRadius: 15,
+        paddingVertical: 10
+    }
+});

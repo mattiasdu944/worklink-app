@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { LoginScreen, RegisterScreen } from '../screens';
-import { AuthContext } from '../context';
+import { AuthContext } from '../context/auth/AuthContext';
 import { MainNavigator } from './MainNavigator';
 import { FullLoadingView } from '../components';
 

@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react'
-import { IUserProfile } from '../interfaces'
+
 import { worklinkApi } from '../api'
+import { IUserProfile } from '../interfaces'
 
 
 interface UserProfileProps{
     isLoading: boolean;
-    userProfile : IUserProfile;
+    userProfile : IUserProfile | null;
 }
 
-export const useProfile = ( username: string ): UserProfileProps => {
+export const useProfile = ( username: string | null | undefined ): UserProfileProps => {
 
-    const [isLoading, setIsLoading] = useState(false as boolean)
+    const [isLoading, setIsLoading] = useState(true as boolean)
     const [userProfile, setUserProfile] = useState({} as IUserProfile)
+
+    if( !username ){
+        username = '';
+    }
 
 
     const getUserProfile = async ()  => {
@@ -24,12 +29,9 @@ export const useProfile = ( username: string ): UserProfileProps => {
         } catch (error) {
             console.log(error);
         }finally{
-
             setIsLoading(false);
         }        
     }
-
-
 
     useEffect(() => {
         getUserProfile();

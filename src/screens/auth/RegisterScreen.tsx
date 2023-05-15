@@ -4,7 +4,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
 import { AuthLayout } from '../../layouts';
-import { AuthContext } from '../../context';
+import { AuthContext } from '../../context/auth/AuthContext';
 
 interface Props extends StackScreenProps<any, any> { }
 

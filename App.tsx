@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthNavigator } from './src/navigator';
 import { MainNavigator } from './src/navigator/MainNavigator';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthProvider } from './src/context';
+import { AuthProvider } from './src/context/auth/AuthProvider';
 
 const Stack = createStackNavigator();
 

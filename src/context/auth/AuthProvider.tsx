@@ -6,8 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { worklinkApi } from '../../api'
 
-import { AuthContext } from './';
+import { AuthContext } from './AuthContext';
 import { AuthState, authReducer } from './authReducer';
+import { IUserProfile } from '../../interfaces';
 
 
 const AUTH_INITIAL_STATE: AuthState = {
@@ -23,7 +24,11 @@ export const AuthProvider:FC<any> = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState({hasError: false, message:''});
 
+    const [profile, setProfile] = useState({} as IUserProfile)
+
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE)
+
+
 
     const checkToken = async () => {
         const token = await AsyncStorage.getItem('token');
@@ -132,7 +137,8 @@ export const AuthProvider:FC<any> = ({ children }) => {
     }
 
     const logout = async () => {
-        await AsyncStorage.setItem('token','');
+        await AsyncStorage.removeItem('token');
+        
         dispatch({ 
             type:'logout',
         })
