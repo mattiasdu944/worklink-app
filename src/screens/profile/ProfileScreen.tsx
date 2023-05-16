@@ -4,9 +4,9 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useProfile } from '../../hooks';
 import { AuthContext } from '../../context/auth/AuthContext';
 
-import { MainLayout } from '../../layouts';
-import { FullLoadingView, ProfileBanner } from '../../components';
 import { COLORS } from '../../styles';
+import { MainLayout } from '../../layouts';
+import { FullLoadingView, ProfileBanner, About, CertificateList, ExperienceList } from '../../components';
 
 export const ProfileScreen = () => {
     const { user, logout } = useContext( AuthContext );
@@ -19,12 +19,22 @@ export const ProfileScreen = () => {
         )
     }
 
-    console.log(userProfile);
-
     return (
         <MainLayout>
             <ProfileBanner 
                 userProfile={ userProfile! }
+            />
+
+            <About
+                description={ userProfile!.profile.description }
+            />
+
+            <CertificateList 
+                certificates={ userProfile!.profile.certificates }
+            />
+            
+            <ExperienceList
+                experiences={ userProfile!.profile.experience }
             />
 
             <TouchableOpacity

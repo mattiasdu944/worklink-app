@@ -26,7 +26,6 @@ export const TYPOGRAPHY = StyleSheet.create({
     title3: {
         fontSize: 20,
         fontWeight: '800',
-        marginBottom:10
     },
     text: {
         fontSize: 14,

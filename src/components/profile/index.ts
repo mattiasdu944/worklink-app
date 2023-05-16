@@ -1,1 +1,6 @@
+export * from './About'
+export * from './CertificateCard'
+export * from './CertificateList'
+export * from './ExperienceCard'
+export * from './ExperienceList'
 export * from './ProfileBanner'
