@@ -3,39 +3,39 @@ import { View, StyleSheet, Image, Text } from 'react-native';
 
 import { VerifyChip } from '../ui/';
 import { TYPOGRAPHY } from '../../styles';
-import { IUserProfile } from '../../interfaces';
+import { IProfile } from '../../interfaces';
 
 interface Props{
-    userProfile: IUserProfile;
+    banner      : string;
+    email       : string;
+    image       : string;
+    lastname?   : string;
+    name        : string;
 }
 
-export const ProfileBanner = ({userProfile}: Props) => {
+export const ProfileBanner = ({banner, email, image, name, lastname}: Props) => {
 
     return (
         <>
             <View style={ styles.container }>
                 <Image
-                    source={{ uri:userProfile.profile?.banner }}
+                    source={{ uri: banner }}
                     style={ styles.banner }
                 />
 
                 <View>
                     <Image
-                        source={{ uri: userProfile.image }}
+                        source={{ uri: image }}
                         style={ styles.profile }
                     />
                     <VerifyChip/>   
                 </View>
             </View>
             <Text style={{ ...TYPOGRAPHY.title2, width:'100%', textAlign:'center', marginBottom:0 }}>
-                {`${ userProfile.name } ${ userProfile.lastname } `}
+                {`${ name }`}
             </Text>
             <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>
-                { userProfile.email }
-            </Text>
-            <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>
-                { userProfile.profile?.career == '' ? '' : `${userProfile.profile?.career} - `}
-                Semestre: { userProfile.profile?.semester }
+                { email }
             </Text>
         </>
     )

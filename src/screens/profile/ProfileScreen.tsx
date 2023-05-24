@@ -10,7 +10,7 @@ import { FullLoadingView, ProfileBanner, About, CertificateList, ExperienceList 
 
 export const ProfileScreen = () => {
     const { user, logout } = useContext( AuthContext );
-    const { userProfile, isLoading } = useProfile( user?.username);
+    const { profile, isLoading } = useProfile( user?.username, 'student');
 
 
     if( isLoading ){
@@ -22,10 +22,13 @@ export const ProfileScreen = () => {
     return (
         <MainLayout>
             <ProfileBanner 
-                userProfile={ userProfile! }
+                banner={ profile.banner } 
+                email={ profile.email } 
+                image={ profile.image } 
+                name={ profile.name }
             />
 
-            <About
+            {/* <About
                 description={ userProfile!.profile.description }
             />
 
@@ -48,7 +51,7 @@ export const ProfileScreen = () => {
             </TouchableOpacity>
             <View style={{ minHeight:100 }}>
                 
-            </View>
+            </View> */}
         </MainLayout>
     )
 }

@@ -8,14 +8,14 @@ import { worklinkApi } from '../../api'
 
 import { AuthContext } from './AuthContext';
 import { AuthState, authReducer } from './authReducer';
-import { IUserProfile } from '../../interfaces';
+import { IProfile } from '../../interfaces';
 
 
 const AUTH_INITIAL_STATE: AuthState = {
     status: 'checking',
     errorMessage: '',
     token: null,
-    user: null,
+    user: null, 
 }
 
 
@@ -24,7 +24,7 @@ export const AuthProvider:FC<any> = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState({hasError: false, message:''});
 
-    const [profile, setProfile] = useState({} as IUserProfile)
+    const [profile, setProfile] = useState({} as IProfile)
 
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE)
 

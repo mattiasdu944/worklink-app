@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native';
 import { TYPOGRAPHY } from '../../styles';
-import { IUserProfileExperience } from '../../interfaces';
-import { ExperienceCard } from './';
+import { IProfileExperience } from '../../interfaces';
+import { ExperienceCard } from '.';
 
 interface Props{
-    experiences: IUserProfileExperience[]
+    experiences: IProfileExperience[]
 }
 
 export const ExperienceList = ( { experiences }: Props ) => {

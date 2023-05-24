@@ -1,13 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ContactsScreen, HomeScreen, JobsScreen, ProfileScreen } from '../screens';
+import { CompanyScreen, ContactsScreen, HomeScreen, JobsScreen, ProfileScreen } from '../screens';
 
 import { COLORS } from '../styles';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { HeaderLeft, HeaderRigth } from '../components';
+import { useContext } from 'react';
+import { AuthContext } from '../context/auth/AuthContext';
 
 const Tab = createBottomTabNavigator();
 
 export const MainNavigator = () => {
+
+    const { user } = useContext( AuthContext );
     return (
         <Tab.Navigator
             sceneContainerStyle={{
@@ -57,7 +61,15 @@ export const MainNavigator = () => {
             <Tab.Screen options={{ title:'Inicio' }} name="HomeScreen" component={ HomeScreen } />
             <Tab.Screen options={{ title:'Contactos' }} name="ContactsScreen" component={ ContactsScreen }/>
             <Tab.Screen options={{ title:'Empleos' }} name="JobsScreen" component={ JobsScreen } />
-            <Tab.Screen options={{ title:'Perfil' }} name="ProfileScreen" component={ ProfileScreen } />
+            <Tab.Screen options={{ title:'Perfil' }} name="ProfileScreen" component={ 
+                user?.role == 'student'
+                ?(
+                    ProfileScreen 
+                ) 
+                :(
+                    CompanyScreen
+                )
+            } />
         </Tab.Navigator>
     );
 }

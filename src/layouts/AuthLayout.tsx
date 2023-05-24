@@ -18,7 +18,7 @@ export const AuthLayout = ({ children }: Props) => {
             <StatusBar style="light" />
 
             <ScrollView style={{ flex:1 }}>
-                <View style={{...COMPONENTS.container, justifyContent:'center', paddingTop:top * 2 }}>
+                <View style={{...COMPONENTS.container, paddingTop:top * 2 }}>
 
                     { children }
 

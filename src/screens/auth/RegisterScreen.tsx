@@ -1,10 +1,11 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useMemo } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { StackScreenProps } from "@react-navigation/stack";
 
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
 import { AuthLayout } from '../../layouts';
 import { AuthContext } from '../../context/auth/AuthContext';
+import SelectDropdown from 'react-native-select-dropdown';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -13,15 +14,21 @@ export const RegisterScreen = ({ navigation }: Props) => {
 
     const { registerUser } = useContext(AuthContext);
 
+    const [role, setRole] = useState()
     const [isLoading, setIsLoading] = useState(false);
+    const [registerForm, setRegisterForm] = useState({ name:'', lastname:'', username:'', email:'', password:'', role });
 
-    const [registerForm, setRegisterForm] = useState({ name:'', lastname:'', username:'', email:'', password:''});
-
+    const roles = [
+        'Estudiante',
+        'Empresa',
+    ]
     const handleChange = (name: string, value: string) => setRegisterForm({ ...registerForm, [name]: value });
 
     const handleSubmit = async () => {
         const { email, lastname, name, password, username } = registerForm;
         setIsLoading(true);
+
+        console.log(registerForm);
 
         if( name.trim() == '' || name.trim().length < 4){
             alert('Ingrese un nombre valido');
@@ -60,7 +67,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
         }
 
 
-        await registerUser( email.trim().toLocaleLowerCase(), password.trim(), name.trim(), lastname.trim(), username.trim().toLocaleLowerCase() );
+        // await registerUser( email.trim().toLocaleLowerCase(), password.trim(), name.trim(), lastname.trim(), username.trim().toLocaleLowerCase() );
 
         setIsLoading(false);
     }
@@ -85,6 +92,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     value={registerForm.name}
                     onChangeText={(text) => handleChange("name", text)}
                     style={COMPONENTS.textInput}
+                    placeholder='Ingresa tus nombres'
                 />
             </View>
             <View>
@@ -93,6 +101,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     style={COMPONENTS.textInput}
                     value={registerForm.lastname}
                     onChangeText={(text) => handleChange("lastname", text)}
+                    placeholder='Ingresa tus apellidos'
                 />
             </View>
             <View>
@@ -101,6 +110,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     style={COMPONENTS.textInput}
                     value={registerForm.username}
                     onChangeText={(text) => handleChange("username", text)}
+                    placeholder='Ingresa un nombre de usuario unico'
                 />
             </View>
             <View>
@@ -109,6 +119,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     style={COMPONENTS.textInput}
                     value={registerForm.email}
                     onChangeText={(text) => handleChange("email", text)}
+                    placeholder='Tu correo institucional'
                 />
             </View>
             <View>
@@ -118,6 +129,26 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     value={registerForm.password}
                     secureTextEntry
                     onChangeText={(text) => handleChange("password", text)}
+                    placeholder='Crea una contraseña'
+                />
+            </View>
+
+            <View style={{ justifyContent:'flex-start' }}>
+                <Text>Eligue el tipo de cuenta</Text>
+                
+                <SelectDropdown
+                    data={roles}
+                    onSelect={(selectedItem, index) => {
+                        setRole(selectedItem)
+                    }}
+                    
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                        return selectedItem
+                    }}
+
+                    rowTextForSelection={(item, index) => {
+                        return item
+                    }}
                 />
             </View>
 

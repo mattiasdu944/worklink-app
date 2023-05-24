@@ -1,41 +1,45 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 import { worklinkApi } from '../api'
-import { IUserProfile } from '../interfaces'
+import { ICompany, IProfile } from '../interfaces'
 
 
-interface UserProfileProps{
+interface ProfileProps{
     isLoading: boolean;
-    userProfile : IUserProfile | null;
+    profile : IProfile | ICompany;
 }
 
-export const useProfile = ( username: string | null | undefined ): UserProfileProps => {
+export const useProfile = ( username: string | null | undefined, role: 'student'|'company' ): ProfileProps => {
 
+    
     const [isLoading, setIsLoading] = useState(true as boolean)
-    const [userProfile, setUserProfile] = useState({} as IUserProfile)
+    const [profile, setProfile] = useState({} as any)
+
 
     if( !username ){
         username = '';
     }
 
-
-    const getUserProfile = async ()  => {
+    const getProfile = async ()  => {
         setIsLoading(true);
+
         try {
             const { data } = await worklinkApi.get(`/user/profile?username=${ username }`)
-            setUserProfile( data as IUserProfile );
+            role == 'company' ? setProfile( data as ICompany ) : setProfile( data as IProfile )
             setIsLoading(false);
             
         } catch (error) {
             console.log(error);
         }finally{
             setIsLoading(false);
-        }        
+        }    
     }
+    
 
     useEffect(() => {
-        getUserProfile();
+        getProfile();
     }, [])
     
-    return { userProfile, isLoading }
+
+    return { profile, isLoading }
 }

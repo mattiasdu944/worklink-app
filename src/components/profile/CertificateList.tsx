@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import { IUserProfileCertificates } from '../../interfaces';
 
 import { TYPOGRAPHY } from '../../styles';
-import { CertificateCard } from './';
+import { CertificateCard } from '.';
 
 interface Props {
-    certificates: IUserProfileCertificates[]
+    certificates: IUserProfileCertificates[];
 }
 
 export const CertificateList = ({ certificates }: Props) => {
@@ -20,11 +20,11 @@ export const CertificateList = ({ certificates }: Props) => {
                 )
                 : (
                     
-                        [0,1,2,3,4,5].map((_, index) => (
-                            <CertificateCard 
-                                key={index}
-                            />
-                        ))
+                    [0,1,2,3,4,5].map((_, index) => (
+                        <CertificateCard 
+                            key={index}
+                        />
+                    ))
                     
                 )
             }
