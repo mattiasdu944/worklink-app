@@ -1,9 +1,14 @@
 import React, { useContext } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { TYPOGRAPHY } from '../../styles';
 import { VacantContext } from '../../context/vacants/VacantContext';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-export const JobList = () => {
+interface Props{
+    navigation: StackNavigationProp<any, any, undefined>;
+}
+
+export const JobList = ({ navigation }: Props) => {
 
     const { vacants } = useContext(VacantContext);
 
@@ -11,7 +16,12 @@ export const JobList = () => {
         <>
             {
                 vacants.map(( vacant ) => (
-                    <View key={ vacant._id } style={ styles.container }>
+                    <TouchableOpacity 
+                        key={ vacant._id } 
+                        activeOpacity={0.8}
+                        style={ styles.container }
+                        onPress={() => navigation.navigate('JobScreen')}
+                    >
                         <Image
 
                             source={{ uri:vacant.company.image }}
@@ -25,7 +35,7 @@ export const JobList = () => {
                                 { vacant.company.name } - { vacant.type }
                             </Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 ))
 
             }

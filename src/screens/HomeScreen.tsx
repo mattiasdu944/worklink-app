@@ -2,19 +2,22 @@ import React from 'react'
 
 import { MainLayout } from '../layouts';
 import { JobsCarousel, SearchInput, SectionHeader, JobList } from '../components';
+import { StackScreenProps } from '@react-navigation/stack';
 
-export const HomeScreen = () => {
+interface Props extends StackScreenProps<any,any>{};
+
+export const HomeScreen = ({ navigation }: Props) => {
     return (
         <MainLayout>
             <SearchInput placeholder={'Buscar empleo'}/>
 
             {/* Carousel */}
             <SectionHeader title={'Vacantes mas vistas'} subTitle='Ver todo'/>
-            <JobsCarousel/>
+            <JobsCarousel navigation={ navigation }/>
 
             {/* Carousel */}
             <SectionHeader title={'Vacantes recientes'} subTitle='Ver todo'/>
-            <JobList/>
+            <JobList navigation={ navigation } />
 
         </MainLayout>
     )

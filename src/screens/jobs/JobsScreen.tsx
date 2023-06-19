@@ -1,13 +1,15 @@
 import React from 'react'
-import { Text } from 'react-native';
 import { MainLayout } from '../../layouts';
+import { JobList, SectionHeader } from '../../components';
+import { StackScreenProps } from '@react-navigation/stack';
 
-export const JobsScreen = () => {
+interface Props extends StackScreenProps<any,any>{};
+
+export const JobsScreen = ({ navigation }: Props) => {
     return (
         <MainLayout>
-            
-
-            <Text>JobsScreen</Text>
+            <SectionHeader title={'Vacantes disponibles'}/>
+            <JobList navigation={ navigation }/>
         </MainLayout>
     )
 }

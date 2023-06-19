@@ -1,17 +1,24 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { TYPOGRAPHY } from '../../styles';
 import { IVacant } from '../../interfaces/index';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 
 interface Props{
     vacant: IVacant;
+    navigation: StackNavigationProp<any, any, undefined>;
+    
 }
 
-export const JobCard = ({ vacant }: Props) => {
+export const JobCard = ({ vacant, navigation }: Props) => {
 
     return (
-        <View style={ styles.container }>
+        <TouchableOpacity
+            activeOpacity={0.7}
+            style={ styles.container }
+            onPress={() => navigation.navigate('JobScreen', { vacant })}
+        >
             <Image
                 source={{ uri: vacant.image }}
                 style={{ width:'100%', height:150 }}
@@ -27,7 +34,7 @@ export const JobCard = ({ vacant }: Props) => {
                 <Text style={ TYPOGRAPHY.text }>{ vacant.type }</Text>
                 <Text>{ vacant.salary }Bs</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
