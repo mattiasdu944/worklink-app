@@ -28,7 +28,6 @@ export default function App() {
                         }}
                     >
                         <Stack.Screen name="AuthNavigator"  component={ AuthNavigator } />
-                        <Stack.Screen name="MainNavigator"  component={ MainNavigator } />
                     </Stack.Navigator>
                 </NavigationContainer>
             </VacantProvider>
