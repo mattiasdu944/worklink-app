@@ -7,9 +7,9 @@ export interface ICompany {
     location:    string;
     phone:       string;
     website:     string;
-    password:    string;
+    token:       string;
     username:    string;
-    vacancies:   any[];
     image:       string;
     banner:      string;
 }
+

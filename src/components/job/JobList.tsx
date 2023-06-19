@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { TYPOGRAPHY } from '../../styles';
+import { VacantContext } from '../../context/vacants/VacantContext';
 
 export const JobList = () => {
+
+    const { vacants } = useContext(VacantContext);
+
     return (
         <>
             {
-                [1,2,3,4,5,6,7,8,9,0].map((_,index) => (
-                    <View key={ index } style={ styles.container }>
+                vacants.map(( vacant ) => (
+                    <View key={ vacant._id } style={ styles.container }>
                         <Image
 
-                            source={{ uri:'https://play-lh.googleusercontent.com/WUcazXmUT97aoXa1TmB72z1RrP4shaBA4Te9vH5fcCHIPCBVjj5F6fGEPgNq6HXmXw=w480-h960-rw' }}
+                            source={{ uri:vacant.company.image }}
                             style={{ width: 50, height: 50, borderRadius:20 }}
                         />
                         <View>
-                            <Text style={{...TYPOGRAPHY.title3, marginBottom:0 }}>Sr. FullStack developer</Text>
-                            <Text style={{...TYPOGRAPHY.text}}>
-                                Google - Remote
+                            <Text style={{...TYPOGRAPHY.title3, marginBottom:0 }}>
+                                { vacant.title }
+                            </Text>
+                            <Text style={{...TYPOGRAPHY.text, maxWidth:'90%'}}>
+                                { vacant.company.name } - { vacant.type }
                             </Text>
                         </View>
                     </View>
