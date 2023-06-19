@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native';
-import { IUserProfileCertificates } from '../../interfaces';
+import { IProfileCertificates } from '../../interfaces';
 
 import { TYPOGRAPHY } from '../../styles';
 import { CertificateCard } from '.';
 
 interface Props {
-    certificates: IUserProfileCertificates[];
+    certificates: IProfileCertificates[];
 }
 
 export const CertificateList = ({ certificates }: Props) => {

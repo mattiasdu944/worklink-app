@@ -12,6 +12,7 @@ export const ProfileScreen = () => {
     const { user, logout } = useContext( AuthContext );
     const { profile, isLoading } = useProfile( user?.username, 'student');
 
+    console.log({profile});
 
     if( isLoading ){
         return (
@@ -27,18 +28,19 @@ export const ProfileScreen = () => {
                 image={ profile.image } 
                 name={ profile.name }
             />
-
-            {/* <About
-                description={ userProfile!.profile.description }
+            <About
+                description={ profile.description }
             />
-
             <CertificateList 
-                certificates={ userProfile!.profile.certificates }
+                certificates={ profile.certificates }
             />
+
+            {/* <ExperienceList
+                experiences={ profile.experience }
+            /> */}
+            {/* 
+
             
-            <ExperienceList
-                experiences={ userProfile!.profile.experience }
-            />
 
             <TouchableOpacity
                 style={ styles.buttonLogout }

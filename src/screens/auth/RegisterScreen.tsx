@@ -5,7 +5,6 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { COMPONENTS, TYPOGRAPHY } from '../../styles';
 import { AuthLayout } from '../../layouts';
 import { AuthContext } from '../../context/auth/AuthContext';
-import SelectDropdown from 'react-native-select-dropdown';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -130,25 +129,6 @@ export const RegisterScreen = ({ navigation }: Props) => {
                     secureTextEntry
                     onChangeText={(text) => handleChange("password", text)}
                     placeholder='Crea una contraseña'
-                />
-            </View>
-
-            <View style={{ justifyContent:'flex-start' }}>
-                <Text>Eligue el tipo de cuenta</Text>
-                
-                <SelectDropdown
-                    data={roles}
-                    onSelect={(selectedItem, index) => {
-                        setRole(selectedItem)
-                    }}
-                    
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                        return selectedItem
-                    }}
-
-                    rowTextForSelection={(item, index) => {
-                        return item
-                    }}
                 />
             </View>
 
