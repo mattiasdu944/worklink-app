@@ -20,7 +20,7 @@ export const JobList = ({ navigation }: Props) => {
                         key={ vacant._id } 
                         activeOpacity={0.8}
                         style={ styles.container }
-                        onPress={() => navigation.navigate('JobScreen')}
+                        onPress={() => navigation.navigate('JobScreen', { vacant })}
                     >
                         <Image
 

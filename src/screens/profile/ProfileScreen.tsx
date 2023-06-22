@@ -10,9 +10,10 @@ import { FullLoadingView, ProfileBanner, About, CertificateList, ExperienceList 
 
 export const ProfileScreen = () => {
     const { user, logout } = useContext( AuthContext );
-    const { profile, isLoading } = useProfile( user?.username, 'student');
+    const { profile, isLoading } = useProfile( user?.username);
 
-    console.log({profile});
+
+    console.log({user});
 
     if( isLoading ){
         return (
@@ -28,12 +29,32 @@ export const ProfileScreen = () => {
                 image={ profile.image } 
                 name={ profile.name }
             />
+            
+            <TouchableOpacity
+                style={ styles.buttonEdit }
+                activeOpacity={0.8}
+                onPress={ logout }
+            >
+                <Text style={{ color:COLORS.primary, textAlign:'center' }}>
+                    Editar perfil
+                </Text>
+            </TouchableOpacity>
+
             <About
                 description={ profile.description }
             />
             <CertificateList 
                 certificates={ profile.certificates }
             />
+            <TouchableOpacity
+                style={ styles.buttonLogout }
+                activeOpacity={0.8}
+                onPress={ logout }
+            >
+                <Text style={{ color:'#fff', textAlign:'center' }}>
+                    Cerrar Sesion
+                </Text>
+            </TouchableOpacity>
 
             {/* <ExperienceList
                 experiences={ profile.experience }
@@ -62,6 +83,15 @@ const styles = StyleSheet.create({
     buttonLogout: {
         backgroundColor: COLORS.primary,
         borderRadius: 15,
-        paddingVertical: 10
+        paddingVertical: 10,
+        marginBottom:20
+    },
+    buttonEdit: {
+        borderColor:  COLORS.primary,
+        borderWidth:1,
+        borderRadius: 15,
+        paddingVertical: 10,
+        marginBottom:30,
+        marginTop:30,
     }
 });

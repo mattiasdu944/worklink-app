@@ -1,9 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { JobLayout, MainLayout } from '../../layouts';
 import { IVacant } from '../../interfaces';
 import { COLORS, TYPOGRAPHY } from '../../styles';
+import { Ionicons } from '@expo/vector-icons';
 
 interface Props extends StackScreenProps<any,any>{};
 
@@ -11,6 +12,16 @@ export const JobScreen = ({ route: { params } }: Props) => {
     const { vacant } = params as {vacant: IVacant};
     return (    
         <JobLayout>
+            <TouchableOpacity
+                style={ styles.buttonBack }
+                activeOpacity={0.8}
+            >
+                <Ionicons
+                    name='chevron-back-outline'
+                    color='rgb(255,255,255)'
+                    size={ 18 }
+                />
+            </TouchableOpacity>
             <View style={{ position:'relative' }}>
                 <Image
                     style={ styles.image }
@@ -26,7 +37,14 @@ export const JobScreen = ({ route: { params } }: Props) => {
                     <Text style={{ ...TYPOGRAPHY.title2, marginBottom:0, textAlign:'center' }}>{ vacant.title }</Text>
                     <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>{ vacant.company.name }</Text>
                     <Text style={{ ...TYPOGRAPHY.text, textAlign:'center' }}>{ vacant.location }</Text>
-
+                    <TouchableOpacity
+                        style={ styles.button }
+                        activeOpacity={0.8}
+                    >
+                        <Text style={{ color:'#fff', textAlign:'center' }}>
+                            Postular
+                        </Text>
+                    </TouchableOpacity>
                     <Text style={{ ...TYPOGRAPHY.title3 }}>Sobre la vacante</Text>
                     <Text style={{ ...TYPOGRAPHY.text, textAlign:'justify' }}>
                         { vacant.description }
@@ -104,6 +122,23 @@ const styles = StyleSheet.create({
         paddingVertical: 7,
         backgroundColor: COLORS.primary,
         borderRadius: 20
+    },
+    button: {
+        backgroundColor: COLORS.primary,
+        borderRadius: 15,
+        paddingVertical: 10,
+        marginTop:10,
+        marginBottom:30
+    },
+
+    buttonBack: {
+        backgroundColor: COLORS.primary,
+        position: 'absolute',
+        top:50,
+        left:20,
+        zIndex:3,
+        borderRadius:100,
+        padding:5
     }
 
 });

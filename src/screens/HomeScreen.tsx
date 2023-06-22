@@ -9,7 +9,7 @@ interface Props extends StackScreenProps<any,any>{};
 export const HomeScreen = ({ navigation }: Props) => {
     return (
         <MainLayout>
-            <SearchInput placeholder={'Buscar empleo'}/>
+            <SearchInput screen='SearchJobScreen' navigation={ navigation } placeholder={'Buscar empleo'}/>
 
             {/* Carousel */}
             <SectionHeader title={'Vacantes mas vistas'} subTitle='Ver todo'/>

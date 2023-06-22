@@ -62,12 +62,12 @@ export const MainNavigator = () => {
             <Tab.Screen options={{ title:'Contactos' }} name="ContactsScreen" component={ ContactsScreen }/>
             <Tab.Screen options={{ title:'Empleos' }} name="JobsScreen" component={ JobsScreen } />
             <Tab.Screen options={{ title:'Perfil' }} name="ProfileScreen" component={ 
-                user?.role == 'student'
+                user?.role === 'company'
                 ?(
-                    ProfileScreen 
+                    CompanyScreen
                 ) 
                 :(
-                    CompanyScreen
+                    ProfileScreen 
                 )
             } />
         </Tab.Navigator>

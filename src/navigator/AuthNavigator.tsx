@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { JobScreen, LoginScreen, RegisterScreen } from '../screens';
+import { JobScreen, LoginScreen, RegisterScreen, SearchJobScreen } from '../screens';
 import { AuthContext } from '../context/auth/AuthContext';
 import { MainNavigator } from './MainNavigator';
 import { FullLoadingView } from '../components';
@@ -41,6 +41,7 @@ export const AuthNavigator = () => {
                     <>
                         <Stack.Screen name="MainNavigator"  component={ MainNavigator } />
                         <Stack.Screen name="JobScreen"  component={ JobScreen } />
+                        <Stack.Screen name="SearchJobScreen"  component={ SearchJobScreen } />
                     </>
                 )
             }

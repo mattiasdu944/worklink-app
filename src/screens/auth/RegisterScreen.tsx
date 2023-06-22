@@ -13,14 +13,10 @@ export const RegisterScreen = ({ navigation }: Props) => {
 
     const { registerUser } = useContext(AuthContext);
 
-    const [role, setRole] = useState()
+    const [role, setRole] = useState('student')
     const [isLoading, setIsLoading] = useState(false);
     const [registerForm, setRegisterForm] = useState({ name:'', lastname:'', username:'', email:'', password:'', role });
 
-    const roles = [
-        'Estudiante',
-        'Empresa',
-    ]
     const handleChange = (name: string, value: string) => setRegisterForm({ ...registerForm, [name]: value });
 
     const handleSubmit = async () => {
@@ -66,7 +62,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
         }
 
 
-        // await registerUser( email.trim().toLocaleLowerCase(), password.trim(), name.trim(), lastname.trim(), username.trim().toLocaleLowerCase() );
+        await registerUser( email.trim().toLocaleLowerCase(), password.trim(), name.trim(), lastname.trim(), username.trim().toLocaleLowerCase() );
 
         setIsLoading(false);
     }

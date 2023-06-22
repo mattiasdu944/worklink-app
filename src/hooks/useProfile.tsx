@@ -9,7 +9,7 @@ interface ProfileProps{
     profile : IProfile;
 }
 
-export const useProfile = ( username: string | null | undefined, role: 'student' ): ProfileProps => {
+export const useProfile = ( username: string | null | undefined ): ProfileProps => {
 
     
     const [isLoading, setIsLoading] = useState(true as boolean)

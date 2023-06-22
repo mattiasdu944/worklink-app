@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 
 interface Props{
-    placeholder: string;
+    placeholder : string;
+    screen      : string;
+    navigation  : StackNavigationProp<any, any, undefined>;
+
 }
 
-export const SearchInput = ({ placeholder }: Props) => {
+export const SearchInput = ({ placeholder, screen, navigation }: Props) => {
+    const [search, setSearch] = useState('')
     return (
         <View  style={ styles.container }>
 
@@ -16,8 +22,14 @@ export const SearchInput = ({ placeholder }: Props) => {
                     width:'85%'
                 }}
                 placeholder={ placeholder }
+                onChangeText={ setSearch }
+                value={ search }
+                onSubmitEditing={() => navigation.navigate( screen, { search })}
             />
-            <TouchableOpacity activeOpacity={0.9}>
+            <TouchableOpacity 
+                onPress={() => navigation.navigate( screen, { search })}    
+                activeOpacity={0.7}
+            >
                 <Ionicons
                     name='search-outline'
                     color='rgba(0,0,0, 0.5)'

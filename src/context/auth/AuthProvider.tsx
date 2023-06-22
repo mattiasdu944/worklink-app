@@ -105,15 +105,14 @@ export const AuthProvider:FC<any> = ({ children }) => {
 
     const registerUser = async(email: string, password: string, name: string, lastname: string, username: string): Promise<void> => {
         try {
-            const { data } = await worklinkApi.post('/user/register', { name, email, password, lastname, username });
-            
+            const { data } = await worklinkApi.post('/user/register', { name, email, password, lastname, username, role:'student' });
+            console.log(data);
             dispatch({ 
                 type:'signUp', 
                 payload:{
                     token: data.token,
                     user: {...data.user}
                 },
-            
             })
 
             await AsyncStorage.setItem('token', data.token)
